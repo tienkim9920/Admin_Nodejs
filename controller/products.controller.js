@@ -70,3 +70,36 @@ module.exports.deleteProduct = async (req, res) => {
     res.redirect('/admin/products');
 
 }
+
+
+//Update Product
+module.exports.viewUpdate = async (req, res) => {
+    
+    var idProduct = req.params.id
+
+    var product = await Products.findOne({_id: idProduct})
+
+    res.render('products/update', {
+        product: product,
+        success: false
+    })
+
+}
+
+module.exports.updateProduct = async (req, res) => {
+
+    var idProduct = req.params.id
+
+    var product = await Products.findOne({_id: idProduct})
+
+    product.name = req.body.name
+    product.price = req.body.price
+    product.status = req.body.status
+
+    product.save()
+
+    res.render('products/update', {
+        product: product,
+        success: true
+    })
+}

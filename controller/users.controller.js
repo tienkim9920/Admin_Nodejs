@@ -91,6 +91,4 @@ module.exports.updateUser = async (req, res) => {
         user: user,
         success: true
     })
-
-
 }
